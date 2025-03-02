@@ -9,9 +9,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'hbs');
-app.set('views', './views'); // Set views directory
-
 const GOOGLE_SEARCH_API_KEY = process.env.GOOGLE_SEARCH_API_KEY;
 const GOOGLE_CSE_ID = process.env.GOOGLE_CSE_ID;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -120,11 +117,6 @@ async function generateSEOContent(results, keyword) {
   }
 }
 
-// Home route - Render UI
-app.get('/', (req, res) => {
-  res.render('index', { seoData: null, error: null });
-});
-
 // API endpoint
 app.post('/generate-seo', async (req, res) => {
   const { keyword } = req.body;
@@ -139,11 +131,9 @@ app.post('/generate-seo', async (req, res) => {
     });
 
   const seoContent = await generateSEOContent(results, keyword);
-  res.render('index', { seoData: seoContent, error: null });
+  res.status(200).json(seoContent);
 });
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running on Port: ${PORT}`));
