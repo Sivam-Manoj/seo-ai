@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'hbs');
 app.set('views', './views'); // Set views directory
-app.use(express.static('public')); // Serve static files
 
 const GOOGLE_SEARCH_API_KEY = process.env.GOOGLE_SEARCH_API_KEY;
 const GOOGLE_CSE_ID = process.env.GOOGLE_CSE_ID;
