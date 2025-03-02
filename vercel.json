@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "index.js",
       "use": "@vercel/node",
       "config": {
         "maxDuration": 60
@@ -19,13 +19,5 @@
     "GOOGLE_SEARCH_API_KEY": "@google_search_api_key",
     "GOOGLE_CSE_ID": "@google_cse_id",
     "OPENAI_API_KEY": "@openai_api_key"
-  },
-  "static": {
-    "directory": "public"
-  },
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
   }
 }
